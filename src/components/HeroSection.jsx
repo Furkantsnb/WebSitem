@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import { FaGithub, FaLinkedin, FaEnvelope, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaTwitter, FaMedium } from 'react-icons/fa';
 
 const TechnologiesSection = () => {
   const [technologies, setTechnologies] = useState(null);
@@ -211,6 +211,12 @@ const HeroSection = () => {
                 <a href={`mailto:${content.socialLinks.email}`}
                    className="text-2xl text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   <FaEnvelope />
+                </a>
+              )}
+              {content?.socialLinks?.medium && (
+                <a href={content.socialLinks.medium} target="_blank" rel="noopener noreferrer"
+                   className="text-2xl text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <FaMedium />
                 </a>
               )}
             </div>

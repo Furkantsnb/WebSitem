@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter, FaMedium } from 'react-icons/fa';
 import { MdOutlineSubject } from "react-icons/md";
 import emailjs from '@emailjs/browser';
 
@@ -12,6 +12,7 @@ const ContactInfo = ({ data }) => {
     github: FaGithub,
     linkedin: FaLinkedin,
     twitter: FaTwitter,
+    medium: FaMedium,
     // İhtiyaç olursa buraya başka sosyal medya ikonları eklenebilir
     // medium: FaMediumM,
   };
@@ -55,21 +56,12 @@ const ContactInfo = ({ data }) => {
         <div className="pt-6 border-t border-gray-200 dark:border-gray-700 mt-6">
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Sosyal Medya</h3>
           <div className="flex flex-wrap gap-6">
-            {Object.entries(data.socials).map(([platform, url]) => {
-              const Icon = socialIcons[platform.toLowerCase()];
+            {Object.entries(data.socials).map(([key, value]) => {
+              const Icon = socialIcons[key];
               return (
-                Icon && (
-                  <motion.a
-                    key={platform}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-2xl"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <Icon />
-                  </motion.a>
-                )
+                <a key={key} href={value} target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <Icon />
+                </a>
               );
             })}
           </div>
